@@ -23,3 +23,16 @@ class KeyValueStore {
     }
 }
 
+
+// Storing a value
+//KeyValueStore.shared.setValue("0x...", forKey: "signer_private")
+//KeyValueStore.shared.setValue("0x...", forKey: "signer_public")
+//KeyValueStore.shared.setValue("4823", forKey: "fid")
+
+// Fetching a value
+//if let signer_private = KeyValueStore.shared.value(forKey: "signer_private") as? String {
+//    print("Signer: \(signer_private)")
+//} else {
+//    print("signer_private not found")
+//}
+

@@ -21,6 +21,13 @@ struct Cast: Codable {
     let timestamp: Int
 }
 
+struct PostBody: Codable {
+    let signer: String
+    let castMessage: String
+    let fid: String
+    let parentUrl: String
+}
+
 class CastManager {
     static let shared = CastManager()
     
@@ -54,48 +61,68 @@ class CastManager {
         }.resume()
     }
     
-    func postCast(text: String) {
-        //  @TODO we need a helper function to look up the signer and FID in device storage and pass it in to the body
+    func postCast(text: String, parentUrl: String) {        
+        var user_fid: String = ""
+        var user_signer: String = ""
+        if let fid = KeyValueStore.shared.value(forKey: "fid") as? String {
+            print("fid: \(fid)")
+            user_fid = fid
+        } else {
+            print("fid not found")
+        }
+        
+        if let signer_private = KeyValueStore.shared.value(forKey: "signer_private") as? String {
+            print("signer_private: \(signer_private)")
+            user_signer = signer_private
+        } else {
+            print("signer_private not found")
+        }
         let url = URL(string: "https://example.com/api/endpoint")!
+        
+        let postBody = PostBody(signer: user_signer,
+                                castMessage: text,
+                                fid: user_fid,
+                                parentUrl: parentUrl)
 
-        let jsonData = """
-        {
-            "signer": "value1",
-            "castMessage": "value2",
-            "fid": "value3",
-            "parentUrl": ""
-        }
-        """.data(using: .utf8)
-
-        var request = URLRequest(url: url)
-
-        request.httpMethod = "POST"
-
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-
-        request.httpBody = jsonData
-
-        let session = URLSession.shared
-
-        let task = session.dataTask(with: request) { data, response, error in
-            if let error = error {
-                print("Error: \(error)")
-                return
-            }
+        let jsonEncoder = JSONEncoder()
+        do {
+            let jsonData = try jsonEncoder.encode(postBody)
             
-            guard let data = data else {
-                print("No data returned")
-                return
+            if let jsonString = String(data: jsonData, encoding: .utf8) {
+                print("JSON String:", jsonString)
+                
+                var request = URLRequest(url: url)
+
+                request.httpMethod = "POST"
+
+                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+                request.httpBody = jsonData
+
+                let session = URLSession.shared
+
+                let task = session.dataTask(with: request) { data, response, error in
+                    if let error = error {
+                        print("Error: \(error)")
+                        return
+                    }
+                    
+                    guard let data = data else {
+                        print("No data returned")
+                        return
+                    }
+                    
+                    if let responseString = String(data: data, encoding: .utf8) {
+                        print("Response: \(responseString)")
+                    }
+                }
+
+                task.resume()
+
             }
-            
-            if let responseString = String(data: data, encoding: .utf8) {
-                print("Response: \(responseString)")
-            }
+        } catch {
+            print("Error encoding PostBody to JSON:", error)
         }
-
-        // Start the task
-        task.resume()
-
     }
 }
 

@@ -12,6 +12,7 @@
 		A258109D2B925C4A0021C2D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A258109C2B925C4A0021C2D4 /* Assets.xcassets */; };
 		A25810A02B925C4A0021C2D4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A258109F2B925C4A0021C2D4 /* Preview Assets.xcassets */; };
 		A25810A72B9260950021C2D4 /* CastCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25810A62B9260950021C2D4 /* CastCardView.swift */; };
+		A25810A92B9285D60021C2D4 /* ProfileButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25810A82B9285D60021C2D4 /* ProfileButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		A258109C2B925C4A0021C2D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A258109F2B925C4A0021C2D4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A25810A62B9260950021C2D4 /* CastCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastCardView.swift; sourceTree = "<group>"; };
+		A25810A82B9285D60021C2D4 /* ProfileButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 				A25810A62B9260950021C2D4 /* CastCardView.swift */,
 				A258109C2B925C4A0021C2D4 /* Assets.xcassets */,
 				A258109E2B925C4A0021C2D4 /* Preview Content */,
+				A25810A82B9285D60021C2D4 /* ProfileButtonView.swift */,
 			);
 			path = SWOOOP;
 			sourceTree = "<group>";
@@ -142,6 +145,7 @@
 			files = (
 				A258109B2B925C480021C2D4 /* ContentView.swift in Sources */,
 				A25810A72B9260950021C2D4 /* CastCardView.swift in Sources */,
+				A25810A92B9285D60021C2D4 /* ProfileButtonView.swift in Sources */,
 				A25810992B925C480021C2D4 /* SWOOOPApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

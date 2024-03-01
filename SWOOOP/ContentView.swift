@@ -28,11 +28,12 @@ struct ContentView: View {
         castText: "hello world!",
         embeds: [],
         username: "stevedylandev.eth",
-        pfp: "https://dweb.mypinata.cloud/ipfs/QmVLwvmGehsrNEvhcCnnsw5RQNseohgEkFNN1848zNzdng?filename=pinnie.png",
+        pfp: "https://dweb.mypinata.cloud/ipfs/QmfZWqERWqeLAus6cEbXNg4UMysfDUBimbtAW62LGAFoca?filename=pinnie.png",
         timestamp: 1
     )
     
     var body: some View {
+        ProfileButtonView(cast: data)
         ScrollView(.vertical){
            CastCardView(cast: data)
            CastCardView(cast: data)

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CastCardView: View {
     var cast: Cast
+    var screenHeight: CGFloat // Add screenHeight as a parameter
     
     var body: some View {
         VStack {
@@ -31,8 +32,7 @@ struct CastCardView: View {
                     .bold()
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .frame(height: 800)
+        .frame(width: UIScreen.main.bounds.width, height: screenHeight)
     }
 }
 

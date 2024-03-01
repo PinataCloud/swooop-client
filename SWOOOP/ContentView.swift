@@ -34,12 +34,15 @@ struct ContentView: View {
     
     var body: some View {
         ScrollView(.vertical){
-           CastCardView(cast: data)
-           CastCardView(cast: data)
-           CastCardView(cast: data)
-           CastCardView(cast: data)
+            LazyVStack(spacing: 0){
+               CastCardView(cast: data, screenHeight: UIScreen.main.bounds.height)
+               CastCardView(cast: data, screenHeight: UIScreen.main.bounds.height)
+               CastCardView(cast: data, screenHeight: UIScreen.main.bounds.height)
+               CastCardView(cast: data, screenHeight: UIScreen.main.bounds.height)
+            }
         }
         .scrollTargetBehavior(.paging)
+        .ignoresSafeArea(.all)
     }
 }
 

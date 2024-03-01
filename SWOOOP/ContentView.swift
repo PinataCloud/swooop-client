@@ -28,19 +28,18 @@ struct ContentView: View {
         castText: "hello world!",
         embeds: [],
         username: "stevedylandev.eth",
-        pfp: "https://gateway.pinata.cloud/ipfs/QmVLwvmGehsrNEvhcCnnsw5RQNseohgEkFNN1848zNzdng?filename=pinnie.png",
+        pfp: "https://dweb.mypinata.cloud/ipfs/QmVLwvmGehsrNEvhcCnnsw5RQNseohgEkFNN1848zNzdng?filename=pinnie.png",
         timestamp: 1
     )
     
     var body: some View {
         ScrollView(.vertical){
-            LazyVStack {
-                
-       CastCardView(cast: data)
-       CastCardView(cast: data)
-       CastCardView(cast: data)
-            }
+           CastCardView(cast: data)
+           CastCardView(cast: data)
+           CastCardView(cast: data)
+           CastCardView(cast: data)
         }
+        .scrollTargetBehavior(.paging)
     }
 }
 

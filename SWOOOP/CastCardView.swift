@@ -35,4 +35,3 @@ struct CastCardView: View {
         .frame(height: 800)
     }
 }
-

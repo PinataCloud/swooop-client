@@ -7,39 +7,31 @@
 
 import SwiftUI
 
-struct Embed: Codable {
-    let type: String
-    let url: String
-}
-
-struct Cast: Codable {
-    let id: Int
-    let castText: String
-    let embeds: [Embed]
-    let username: String
-    let pfp: String
-    let timestamp: Int
-}
-
 struct ContentView: View {
+    @State public var casts: [Cast] = []
     
-    @State private var data = Cast(
-        id: 1,
-        castText: "hello world!",
-        embeds: [],
-        username: "stevedylandev.eth",
-        pfp: "https://dweb.mypinata.cloud/ipfs/QmVLwvmGehsrNEvhcCnnsw5RQNseohgEkFNN1848zNzdng?filename=pinnie.png",
-        timestamp: 1
-    )
+    func loadCasts() {
+        CastManager.shared.fetchCasts() { result in
+                    switch result {
+                    case .success(let casts):
+                        // Do something with the fetched posts
+                        print(casts)
+                        self.casts = casts
+                    case .failure(let error):
+                        // Handle error
+                        print("Failed to fetch casts: \(error)")
+                    }
+                }
+    }
     
     var body: some View {
         ScrollView(.vertical){
-           CastCardView(cast: data)
-           CastCardView(cast: data)
-           CastCardView(cast: data)
-           CastCardView(cast: data)
+            ForEach(casts, id: \.id) { cast in
+                CastCardView(cast: cast)
+            }
         }
         .scrollTargetBehavior(.paging)
+        .onAppear { loadCasts() }
     }
 }
 

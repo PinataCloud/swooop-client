@@ -7,15 +7,26 @@
 
 import Foundation
 
-struct Embed: Codable {
-    let type: String
+struct CastId: Codable {
+    let fid: Int
+    let hash: String
+}
+
+struct EmbedCast: Codable {
+    let castId: CastId
+}
+
+struct EmbedUrl: Codable {
     let url: String
 }
 
+
+
 struct Cast: Codable {
-    let id: Int
+    let id: String
     let castText: String
-    let embeds: [Embed]
+    let embedUrl: [EmbedUrl]
+    let embedCast: [EmbedCast]
     let username: String
     let pfp: String
     let timestamp: Int
@@ -34,8 +45,7 @@ class CastManager {
     var casts: [Cast] = []
     
     func fetchCasts(completion: @escaping (Result<[Cast], Error>) -> Void) {
-        // Replace "https://api.swooop.com/casts" with your actual API endpoint
-        guard let url = URL(string: "https://api.swooop.com/casts") else {
+        guard let url = URL(string: "https://swooopserver-production.up.railway.app/feed?channel=https://warpcast.com/~/channel/pinata") else {
             completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
             return
         }

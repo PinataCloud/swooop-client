@@ -76,50 +76,51 @@ class UserManager {
         let url = URL(string: "https://example.com/api/endpoint")!
         
         var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            
-    let session = URLSession.shared
-    let task = session.dataTask(with: request) { data, response, error in
-        if let error = error {
-            completion(.failure(error))
-            return
-        }
+        request.httpMethod = "POST"
         
-        // Check for HTTP response status code indicating success
-        guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
-            let statusCode = (response as? HTTPURLResponse)?.statusCode ?? -1
-            completion(.failure(NSError(domain: "", code: statusCode, userInfo: [NSLocalizedDescriptionKey: "Unexpected response"])))
-            return
-        }
-        
-        // Ensure data is present
-        guard let responseData = data else {
-            completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "No data received"])))
-            return
-        }
-        
-        do {
-            // Decode the JSON response into a SignerPayload object
-            let decoder = JSONDecoder()
-            let signerPayload = try decoder.decode(SignerPayload.self, from: responseData)
-            KeyValueStore.shared.setValue(signerPayload.privateKey, forKey: "signer_private")
-            KeyValueStore.shared.setValue("false", forKey: "signer_approved")
-            KeyValueStore.shared.setValue(signerPayload.fid, forKey: "fid")
-            self.fetchUser(fid: signerPayload.fid) { result in
-                switch result {
-                case .success(let user):
-                    print(user)
-                    KeyValueStore.shared.setValue(user.username, forKey: "username")
-                    KeyValueStore.shared.setValue(user.pfp, forKey: "pfp")
-                    self.pollForSuccess(signerPayload.pollingToken)
-                case .failure(let error):
-                    // Handle error
-                    print("Error: \(error)")
-                }
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
             }
-            completion(.success(signerPayload))
-        } catch {
-            completion(.failure(error))
+            
+            // Check for HTTP response status code indicating success
+            guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+                let statusCode = (response as? HTTPURLResponse)?.statusCode ?? -1
+                completion(.failure(NSError(domain: "", code: statusCode, userInfo: [NSLocalizedDescriptionKey: "Unexpected response"])))
+                return
+            }
+            
+            // Ensure data is present
+            guard let responseData = data else {
+                completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "No data received"])))
+                return
+            }
+            
+            do {
+                // Decode the JSON response into a SignerPayload object
+                let decoder = JSONDecoder()
+                let signerPayload = try decoder.decode(SignerPayload.self, from: responseData)
+                KeyValueStore.shared.setValue(signerPayload.privateKey, forKey: "signer_private")
+                KeyValueStore.shared.setValue("false", forKey: "signer_approved")
+                KeyValueStore.shared.setValue(signerPayload.fid, forKey: "fid")
+                self.fetchUser(fid: signerPayload.fid) { result in
+                    switch result {
+                    case .success(let user):
+                        print(user)
+                        KeyValueStore.shared.setValue(user.username, forKey: "username")
+                        KeyValueStore.shared.setValue(user.pfp, forKey: "pfp")
+                        self.pollForSuccess(token: signerPayload.pollingToken)
+                    case .failure(let error):
+                        // Handle error
+                        print("Error: \(error)")
+                    }
+                }
+                completion(.success(signerPayload))
+            } catch {
+                completion(.failure(error))
+            }
         }
     }
 }

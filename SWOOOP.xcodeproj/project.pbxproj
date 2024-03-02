@@ -17,6 +17,8 @@
 		A25810A02B925C4A0021C2D4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A258109F2B925C4A0021C2D4 /* Preview Assets.xcassets */; };
 		A2BAF6BC2B93775C003D7DC8 /* ProfileButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BAF6BB2B93775C003D7DC8 /* ProfileButtonView.swift */; };
 		A2BAF6BE2B937B54003D7DC8 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BAF6BD2B937B54003D7DC8 /* ProfileView.swift */; };
+		A2BAF6C02B938F74003D7DC8 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BAF6BF2B938F74003D7DC8 /* SignInView.swift */; };
+		A2BAF6C32B939472003D7DC8 /* SlideButton in Frameworks */ = {isa = PBXBuildFile; productRef = A2BAF6C22B939472003D7DC8 /* SlideButton */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,7 @@
 		A258109F2B925C4A0021C2D4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A2BAF6BB2B93775C003D7DC8 /* ProfileButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileButtonView.swift; sourceTree = "<group>"; };
 		A2BAF6BD2B937B54003D7DC8 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		A2BAF6BF2B938F74003D7DC8 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2BAF6C32B939472003D7DC8 /* SlideButton in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +77,7 @@
 				A258109E2B925C4A0021C2D4 /* Preview Content */,
 				A2BAF6BB2B93775C003D7DC8 /* ProfileButtonView.swift */,
 				A2BAF6BD2B937B54003D7DC8 /* ProfileView.swift */,
+				A2BAF6BF2B938F74003D7DC8 /* SignInView.swift */,
 			);
 			path = SWOOOP;
 			sourceTree = "<group>";
@@ -101,6 +106,9 @@
 			dependencies = (
 			);
 			name = SWOOOP;
+			packageProductDependencies = (
+				A2BAF6C22B939472003D7DC8 /* SlideButton */,
+			);
 			productName = SWOOOP;
 			productReference = A25810952B925C480021C2D4 /* SWOOOP.app */;
 			productType = "com.apple.product-type.application";
@@ -129,6 +137,9 @@
 				Base,
 			);
 			mainGroup = A258108C2B925C480021C2D4;
+			packageReferences = (
+				A2BAF6C12B939472003D7DC8 /* XCRemoteSwiftPackageReference "SlideButton" */,
+			);
 			productRefGroup = A25810962B925C480021C2D4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -155,6 +166,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2BAF6C02B938F74003D7DC8 /* SignInView.swift in Sources */,
 				A2BAF6BE2B937B54003D7DC8 /* ProfileView.swift in Sources */,
 				A258109B2B925C480021C2D4 /* ContentView.swift in Sources */,
 				A2BAF6BC2B93775C003D7DC8 /* ProfileButtonView.swift in Sources */,
@@ -368,6 +380,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A2BAF6C12B939472003D7DC8 /* XCRemoteSwiftPackageReference "SlideButton" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/no-comment/SlideButton";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A2BAF6C22B939472003D7DC8 /* SlideButton */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A2BAF6C12B939472003D7DC8 /* XCRemoteSwiftPackageReference "SlideButton" */;
+			productName = SlideButton;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A258108D2B925C480021C2D4 /* Project object */;
 }

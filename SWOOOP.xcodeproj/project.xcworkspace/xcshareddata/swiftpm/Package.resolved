@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "slidebutton",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/no-comment/SlideButton",
+      "state" : {
+        "branch" : "main",
+        "revision" : "5eacebba4d7deeb693592bc9a62ab2d2181e133b"
+      }
+    }
+  ],
+  "version" : 2
+}

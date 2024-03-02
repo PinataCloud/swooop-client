@@ -20,7 +20,6 @@ struct ProfileButtonView: View {
                         .frame(width: 42, height: 42)
                         .clipShape(Circle())
                         .padding()
-                    
                 } else if phase.error != nil {
                     Text("Failed to load image")
                 } else {
@@ -29,6 +28,10 @@ struct ProfileButtonView: View {
             }
         }
         .frame(maxWidth: .infinity)
-        .background(.white)
+        .background(
+            LinearGradient(gradient: Gradient(colors: [Color(red: 0.522, green: 0.267, blue: 0.608), Color(red: 0.341, green: 0.741, blue: 0.753)]), startPoint: .leading, endPoint: .trailing)
+        )
+        .padding(.bottom, -10)
+        .padding(.top, -20)
     }
 }

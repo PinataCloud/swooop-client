@@ -7,40 +7,49 @@
 
 import SwiftUI
 
-struct Embed: Codable {
-    let type: String
-    let url: String
-}
-
-struct Cast: Codable {
-    let id: Int
-    let castText: String
-    let embeds: [Embed]
-    let username: String
-    let pfp: String
-    let timestamp: Int
-}
-
 struct ContentView: View {
+    @State public var casts: [Cast] = []
     
-    @State private var data = Cast(
-        id: 1,
-        castText: "hello world!",
-        embeds: [],
-        username: "stevedylandev.eth",
-        pfp: "https://dweb.mypinata.cloud/ipfs/QmfZWqERWqeLAus6cEbXNg4UMysfDUBimbtAW62LGAFoca?filename=pinnie.png",
-        timestamp: 1
-    )
+    lazy var gradient: CAGradientLayer = {
+        let gradient = CAGradientLayer()
+        gradient.type = .axial
+        gradient.colors = [
+            UIColor.red.cgColor,
+            UIColor.purple.cgColor,
+            UIColor.cyan.cgColor
+        ]
+        gradient.locations = [0, 0.25, 1]
+        return gradient
+    }()
+    
+    
+    func loadCasts() {
+        CastManager.shared.fetchCasts() { result in
+                    switch result {
+                    case .success(let casts):
+                        // Do something with the fetched posts
+                        print(casts)
+                        self.casts = casts
+                    case .failure(let error):
+                        // Handle error
+                        print("Failed to fetch casts: \(error)")
+                    }
+                }
+    }
     
     var body: some View {
         ProfileButtonView(cast: data)
         ScrollView(.vertical){
-           CastCardView(cast: data)
-           CastCardView(cast: data)
-           CastCardView(cast: data)
-           CastCardView(cast: data)
+            ForEach(casts, id: \.id) { cast in
+                CastCardView(cast: cast, screenHeight: UIScreen.main.bounds.height)
+            }
         }
         .scrollTargetBehavior(.paging)
+        .ignoresSafeArea(.all)
+        .onAppear { loadCasts() }
+        .background(
+            LinearGradient(gradient: Gradient(colors: [Color(red: 0.522, green: 0.267, blue: 0.608), Color(red: 0.341, green: 0.741, blue: 0.753)]), startPoint: .bottom, endPoint: .top)
+        )
     }
 }
 

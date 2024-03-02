@@ -7,22 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		412369D02B925F0700A7A114 /* CastManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412369CF2B925F0700A7A114 /* CastManager.swift */; };
+		412369D22B926F7700A7A114 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412369D12B926F7700A7A114 /* StorageManager.swift */; };
+		412369D42B9276BF00A7A114 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412369D32B9276BF00A7A114 /* UserManager.swift */; };
+		415EF0862B9281D400208CED /* CastCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415EF0852B9281D400208CED /* CastCardView.swift */; };
 		A25810992B925C480021C2D4 /* SWOOOPApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25810982B925C480021C2D4 /* SWOOOPApp.swift */; };
 		A258109B2B925C480021C2D4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A258109A2B925C480021C2D4 /* ContentView.swift */; };
 		A258109D2B925C4A0021C2D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A258109C2B925C4A0021C2D4 /* Assets.xcassets */; };
 		A25810A02B925C4A0021C2D4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A258109F2B925C4A0021C2D4 /* Preview Assets.xcassets */; };
-		A25810A72B9260950021C2D4 /* CastCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25810A62B9260950021C2D4 /* CastCardView.swift */; };
-		A25810A92B9285D60021C2D4 /* ProfileButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25810A82B9285D60021C2D4 /* ProfileButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		412369CF2B925F0700A7A114 /* CastManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastManager.swift; sourceTree = "<group>"; };
+		412369D12B926F7700A7A114 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		412369D32B9276BF00A7A114 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		415EF0852B9281D400208CED /* CastCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastCardView.swift; sourceTree = "<group>"; };
 		A25810952B925C480021C2D4 /* SWOOOP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SWOOOP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A25810982B925C480021C2D4 /* SWOOOPApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWOOOPApp.swift; sourceTree = "<group>"; };
 		A258109A2B925C480021C2D4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A258109C2B925C4A0021C2D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A258109F2B925C4A0021C2D4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		A25810A62B9260950021C2D4 /* CastCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastCardView.swift; sourceTree = "<group>"; };
-		A25810A82B9285D60021C2D4 /* ProfileButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +61,10 @@
 			children = (
 				A25810982B925C480021C2D4 /* SWOOOPApp.swift */,
 				A258109A2B925C480021C2D4 /* ContentView.swift */,
-				A25810A62B9260950021C2D4 /* CastCardView.swift */,
+				415EF0852B9281D400208CED /* CastCardView.swift */,
+				412369CF2B925F0700A7A114 /* CastManager.swift */,
+				412369D32B9276BF00A7A114 /* UserManager.swift */,
+				412369D12B926F7700A7A114 /* StorageManager.swift */,
 				A258109C2B925C4A0021C2D4 /* Assets.xcassets */,
 				A258109E2B925C4A0021C2D4 /* Preview Content */,
 				A25810A82B9285D60021C2D4 /* ProfileButtonView.swift */,
@@ -144,9 +151,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A258109B2B925C480021C2D4 /* ContentView.swift in Sources */,
-				A25810A72B9260950021C2D4 /* CastCardView.swift in Sources */,
-				A25810A92B9285D60021C2D4 /* ProfileButtonView.swift in Sources */,
+				412369D02B925F0700A7A114 /* CastManager.swift in Sources */,
 				A25810992B925C480021C2D4 /* SWOOOPApp.swift in Sources */,
+				412369D42B9276BF00A7A114 /* UserManager.swift in Sources */,
+				412369D22B926F7700A7A114 /* StorageManager.swift in Sources */,
+				415EF0862B9281D400208CED /* CastCardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

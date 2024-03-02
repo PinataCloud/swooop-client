@@ -41,14 +41,14 @@ struct ProfileView: View {
 //            case .success(let signerPayload):
 //                // Use signerPayload
 //                print(signerPayload)
-//                poll(token: signerPayload.pollingToken)
-//                deepLinkUrl = signerPayload.deepLinkUrl
-//                openURL()
-//            case .failure(let error):
-//                // Handle error
-//                print(error)
-//            }
-//        }
+        //                poll(token: signerPayload.pollingToken)
+        //                deepLinkUrl = signerPayload.deepLinkUrl
+        //                openURL()
+        //            case .failure(let error):
+        //                // Handle error
+        //                print(error)
+        //            }
+        //        }
     }
     
     func openURL() {
@@ -63,16 +63,14 @@ struct ProfileView: View {
             .scaledToFill()
             .edgesIgnoringSafeArea(.all) // Fill the entire screen
             .overlay(
-                VStack {
+                VStack(alignment: .center) {
                     if(userProfile.username != "") {
-                        HStack {
-                            Spacer()
                             AsyncImage(url: URL(string: userProfile.pfp)) { phase in
                                 if let image = phase.image {
                                     image
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
-                                        .frame(width: 42, height: 42)
+                                        .frame(width: 60, height: 60)
                                         .clipShape(Circle())
                                         .padding()
                                     
@@ -83,8 +81,13 @@ struct ProfileView: View {
                                 }
                             }
                             Text(userProfile.username)
-                        }
+                                .font(.title2)
+                                .bold()
+                                .foregroundColor(.black)
                         Text(String(userProfile.fid))
+                            .font(.title3)
+                            .bold()
+                            .foregroundColor(.black)
                     } else {
                         Button(action: signIn) {
                             Text("Sign in with Warpcast")
@@ -98,6 +101,7 @@ struct ProfileView: View {
                     loadUser()
                 }
                     .padding(.top, 200)
+                    .background(.clear)
             )
     }
 }

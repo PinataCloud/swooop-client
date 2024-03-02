@@ -38,6 +38,7 @@ struct ContentView: View {
                         ZStack {
                             CastCardView(cast: cast)
                                 .containerRelativeFrame([.horizontal, .vertical])
+                                .padding(.horizontal, 20)
                         }
                     }
                 }
@@ -47,13 +48,13 @@ struct ContentView: View {
             .scrollTargetBehavior(.paging)
             .ignoresSafeArea()
             .background(
-                Color(red: 0.071, green: 0.071, blue: 0.071)
+                Color(red: 0.11, green: 0.11, blue: 0.118)
             )
-            
             .sheet(isPresented: $isProfileViewPresented) {
                 ProfileView()
             }
         }
+        .background(Color(red: 0.071, green: 0.071, blue: 0.071))
     }
 }
 

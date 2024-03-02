@@ -38,7 +38,6 @@ struct ContentView: View {
     }
     
     var body: some View {
-        ProfileButtonView(cast: data)
         ScrollView(.vertical){
             ForEach(casts, id: \.id) { cast in
                 CastCardView(cast: cast, screenHeight: UIScreen.main.bounds.height)

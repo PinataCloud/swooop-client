@@ -35,4 +35,3 @@ struct CastCardView: View {
         .frame(width: UIScreen.main.bounds.width, height: screenHeight)
     }
 }
-

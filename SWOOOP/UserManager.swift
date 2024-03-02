@@ -59,7 +59,7 @@ class UserManager {
     }
     
     func fetchUser(fid: String, completion: @escaping (Result<User, Error>) -> Void) {
-        let urlString = "https://your-api-endpoint.com/user?fid=\(fid)"
+        let urlString = "https://swooop-server.onrender.com/user?userFid=\(fid)"
         guard let url = URL(string: urlString) else {
             completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"])))
             return
@@ -162,7 +162,7 @@ class UserManager {
     
     func signIn(completion: @escaping (Result<SignerPayload, Error>) -> Void) {
         print("Signing in...")
-        let url = URL(string: "https://d5db-65-144-97-186.ngrok-free.app/sign-in")!
+        let url = URL(string: "https://https://swooop-server.onrender.com/sign-in")!
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"

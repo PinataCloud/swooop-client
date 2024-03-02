@@ -31,7 +31,7 @@ class UserManager {
     func getUserData() -> User? {
         var user_name: String = ""
         var user_fid: String = ""
-        var user_pfp: String = ""
+        var user_pfp: String = "https://static.vecteezy.com/system/resources/thumbnails/004/511/281/small/default-avatar-photo-placeholder-profile-picture-vector.jpg"
         if let username = KeyValueStore.shared.value(forKey: "username") as? String {
             user_name = username
         } else {

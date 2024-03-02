@@ -35,20 +35,19 @@ struct ProfileView: View {
     }
     
     func signIn() {
-        poll(token: "0x65ecbd1a9f61a8fa8ac76e15")
-//        UserManager.shared.signIn { result in
-//            switch result {
-//            case .success(let signerPayload):
-//                // Use signerPayload
-//                print(signerPayload)
-        //                poll(token: signerPayload.pollingToken)
-        //                deepLinkUrl = signerPayload.deepLinkUrl
-        //                openURL()
-        //            case .failure(let error):
-        //                // Handle error
-        //                print(error)
-        //            }
-        //        }
+        UserManager.shared.signIn { result in
+            switch result {
+            case .success(let signerPayload):
+                // Use signerPayload
+                print(signerPayload)
+                        poll(token: signerPayload.pollingToken)
+                        deepLinkUrl = signerPayload.deepLinkUrl
+                        openURL()
+                    case .failure(let error):
+                        // Handle error
+                        print(error)
+                    }
+                }
     }
     
     func openURL() {

@@ -30,12 +30,7 @@ struct ProfileButtonView: View {
                             .padding()
                         
                     } else if phase.error != nil {
-                        Image(systemName: "person.crop.circle.fill") // Use a default image if loading fails
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 42, height: 42)
-                            .clipShape(Circle())
-                            .padding()
+                        Text("Could not fetch image")
                     } else {
                         ProgressView()
                     }

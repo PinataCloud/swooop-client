@@ -21,7 +21,7 @@ struct ProfileView: View {
         UserManager.shared.pollForSuccess(token: token) { result in
             switch result {
             case .success(let complete):
-                print("close the sheet")
+                print("close the sheet")                
             case .failure(let error):
                 // Handle error
                 print(error)

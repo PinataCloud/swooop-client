@@ -12,26 +12,32 @@ struct CastCardView: View {
     var screenHeight: CGFloat // Add screenHeight as a parameter
     
     var body: some View {
-        VStack {
-            Text(cast.castText)
-                HStack{
+        VStack(alignment: .leading) {
+            HStack{
                     AsyncImage(url: URL(string: cast.pfp)) { phase in
                         if let image = phase.image {
                         image
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: 42, height: 42)
+                            .frame(width: 60, height: 60)
                             .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
                     } else if phase.error != nil {
                         Text("Failed to load image")
                     } else {
                         ProgressView()
                     }
-                }
+                    }
                 Text("@\(cast.username)")
+                    .font(.title2)
                     .bold()
+                    .foregroundColor(.white)
             }
+            
+            Text(cast.castText)
+                .foregroundColor(.white)
+                .font(.title)
         }
-        .frame(width: UIScreen.main.bounds.width, height: screenHeight)
+        .frame(height: screenHeight)
+        .padding(.horizontal)
     }
 }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State public var casts: [Cast] = []
+    @State private var isProfileViewPresented = false // Track if the profile view is presented
     
     lazy var gradient: CAGradientLayer = {
         let gradient = CAGradientLayer()
@@ -38,18 +39,27 @@ struct ContentView: View {
     }
     
     var body: some View {
-        
-        ScrollView(.vertical){
-            ForEach(casts, id: \.id) { cast in
-                CastCardView(cast: cast, screenHeight: UIScreen.main.bounds.height)
+        NavigationStack{
+            VStack {
+                ProfileButtonView()
+                    .onTapGesture {
+                        self.isProfileViewPresented.toggle()
+                    }
+                ScrollView(.vertical){
+                    ForEach(casts, id: \.id) { cast in
+                        CastCardView(cast: cast, screenHeight: UIScreen.main.bounds.height)
+                    }
+                }
+                .ignoresSafeArea(.all)
+                .onAppear { loadCasts() }
+            }
+            .background(
+                LinearGradient(gradient: Gradient(colors: [Color(red: 0.522, green: 0.267, blue: 0.608), Color(red: 0.341, green: 0.741, blue: 0.753)]), startPoint: .bottom, endPoint: .top)
+            )
+            .sheet(isPresented: $isProfileViewPresented) {
+                ProfileView()
             }
         }
-        .scrollTargetBehavior(.paging)
-        .ignoresSafeArea(.all)
-        .onAppear { loadCasts() }
-        .background(
-            LinearGradient(gradient: Gradient(colors: [Color(red: 0.522, green: 0.267, blue: 0.608), Color(red: 0.341, green: 0.741, blue: 0.753)]), startPoint: .bottom, endPoint: .top)
-        )
     }
 }
 

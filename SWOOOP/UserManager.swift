@@ -20,6 +20,10 @@ struct SignerPayload: Codable {
     let fid: String
 }
 
+struct Completion: Codable {
+    let status: String
+}
+
 class UserManager {
     static let shared = UserManager()
     func fetchUser(fid: String, completion: @escaping (Result<User, Error>) -> Void) {
@@ -63,16 +67,52 @@ class UserManager {
         }.resume()
     }
     
-    func pollForSuccess(token: String) {
-        //  Fill this in
+    func pollForSuccess(token: String, completion: @escaping (Result<Completion, Error>) -> Void) {
+        let urlString = "https://your-api-endpoint.com/user?token=\(token)"
+        guard let url = URL(string: urlString) else {
+            completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"])))
+            return
+        }
+        
+        // Create the GET request
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        // Create URLSessionDataTask to make the request
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            // Check for error
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            // Check for response status code
+            guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+                completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid response"])))
+                return
+            }
+            
+            // Check if data is available
+            guard let data = data else {
+                completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "No data received"])))
+                return
+            }
+            
+            do {
+                let complete = try JSONDecoder().decode(Completion.self, from: data)
+                let status: String = complete.status
+                if (status == "complete") {
+                    completion(.success(complete))
+                } else {
+                    self.pollForSuccess(token: token, completion: completion)
+                }
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
     }
     
     func signIn(completion: @escaping (Result<SignerPayload, Error>) -> Void) {
-        //  Make sign in post here
-        var deepLinkURL: String = ""
-        var pollingToken: String = ""
-        var privateKey: String = ""
-        
         let url = URL(string: "https://example.com/api/endpoint")!
         
         var request = URLRequest(url: url)
@@ -111,7 +151,6 @@ class UserManager {
                         print(user)
                         KeyValueStore.shared.setValue(user.username, forKey: "username")
                         KeyValueStore.shared.setValue(user.pfp, forKey: "pfp")
-                        self.pollForSuccess(token: signerPayload.pollingToken)
                     case .failure(let error):
                         // Handle error
                         print("Error: \(error)")

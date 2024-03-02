@@ -137,17 +137,17 @@ class UserManager {
                 print(status)
                 if (status == "completed") {
                     KeyValueStore.shared.setValue(String(complete.userFid), forKey: "fid")
-//                    self.fetchUser(fid: String(complete.userFid)) { result in
-//                        switch result {
-//                        case .success(let user):
-//                            print(user)
-//                            KeyValueStore.shared.setValue(user.username, forKey: "username")
-//                            KeyValueStore.shared.setValue(user.pfp, forKey: "pfp")
-//                        case .failure(let error):
-//                            // Handle error
-//                            print("Error: \(error)")
-//                        }
-//                    }
+                    self.fetchUser(fid: String(complete.userFid)) { result in
+                        switch result {
+                        case .success(let user):
+                            print(user)
+                            KeyValueStore.shared.setValue(user.username, forKey: "username")
+                            KeyValueStore.shared.setValue(user.pfp, forKey: "pfp")
+                        case .failure(let error):
+                            // Handle error
+                            print("Error: \(error)")
+                        }
+                    }
                     print("WE MADE IT")
                     KeyValueStore.shared.setValue("true", forKey: "signer_approved")
                     completion(.success(complete))
@@ -162,7 +162,7 @@ class UserManager {
     
     func signIn(completion: @escaping (Result<SignerPayload, Error>) -> Void) {
         print("Signing in...")
-        let url = URL(string: "https://https://swooop-server.onrender.com/sign-in")!
+        let url = URL(string: "https://swooop-server.onrender.com/sign-in")!
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"

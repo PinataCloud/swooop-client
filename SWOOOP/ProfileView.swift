@@ -22,6 +22,11 @@ struct ProfileView: View {
             switch result {
             case .success(let complete):
                 print("close the sheet")                
+                if let signer_private = KeyValueStore.shared.value(forKey: "signer_private") as? String {
+                    print("Signer: \(signer_private)")
+                } else {
+                    print("signer_private not found")
+                }
             case .failure(let error):
                 // Handle error
                 print(error)
@@ -30,7 +35,7 @@ struct ProfileView: View {
     }
     
     func signIn() {
-        poll(token: "0x24491821d0f60ba0e48d9952")
+        poll(token: "0x65ecbd1a9f61a8fa8ac76e15")
 //        UserManager.shared.signIn { result in
 //            switch result {
 //            case .success(let signerPayload):
@@ -53,41 +58,47 @@ struct ProfileView: View {
     }
     
     var body: some View {
-        VStack {
-            if(userProfile.username != "") {
-                HStack {
-                    Spacer()
-                    AsyncImage(url: URL(string: userProfile.pfp)) { phase in
-                        if let image = phase.image {
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 42, height: 42)
-                                .clipShape(Circle())
+        Image("bg")
+            .resizable()
+            .scaledToFill()
+            .edgesIgnoringSafeArea(.all) // Fill the entire screen
+            .overlay(
+                VStack {
+                    if(userProfile.username != "") {
+                        HStack {
+                            Spacer()
+                            AsyncImage(url: URL(string: userProfile.pfp)) { phase in
+                                if let image = phase.image {
+                                    image
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 42, height: 42)
+                                        .clipShape(Circle())
+                                        .padding()
+                                    
+                                } else if phase.error != nil {
+                                    Text("Failed to load image")
+                                } else {
+                                    ProgressView()
+                                }
+                            }
+                            Text(userProfile.username)
+                        }
+                        Text(String(userProfile.fid))
+                    } else {
+                        Button(action: signIn) {
+                            Text("Sign in with Warpcast")
                                 .padding()
-                            
-                        } else if phase.error != nil {
-                            Text("Failed to load image")
-                        } else {
-                            ProgressView()
+                                .background(Color.blue)
+                                .foregroundColor(Color.white)
+                                .cornerRadius(10)
                         }
                     }
-                    Text(userProfile.username)
+                }.onAppear {
+                    loadUser()
                 }
-                Text(String(userProfile.fid))
-            } else {
-                Button(action: signIn) {
-                                Text("Sign in with Warpcast")
-                                    .padding()
-                                    .background(Color.blue)
-                                    .foregroundColor(Color.white)
-                                    .cornerRadius(10)
-                            }
-                Text("Swipe your face off")
-            }
-        }.onAppear {
-            loadUser()
-        }
+                    .padding(.top, 200)
+            )
     }
 }
 

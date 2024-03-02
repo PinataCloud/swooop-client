@@ -87,7 +87,7 @@ class CastManager {
         } else {
             print("signer_private not found")
         }
-        let url = URL(string: "https://example.com/api/endpoint")!
+        let url = URL(string: "https://swooop-server.onrender.com/message")!
         
         let postBody = PostBody(signer: user_signer,
                                 castMessage: text,

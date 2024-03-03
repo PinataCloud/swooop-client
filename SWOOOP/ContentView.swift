@@ -9,9 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     @State public var casts: [Cast] = []
-    @State private var isProfileViewPresented = false // Track if the profile view is presented
+    @State public var isProfileViewPresented = false // Track if the profile view is presented
     
-    
+    func toggleProfileView() {
+        isProfileViewPresented.toggle()
+    }
     func loadCasts() {
         CastManager.shared.fetchCasts() { result in
                     switch result {
@@ -28,10 +30,7 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
-            ProfileButtonView()
-                .onTapGesture {
-                    self.isProfileViewPresented.toggle()
-                }
+            ProfileButtonView(toggleProfileView: toggleProfileView)
             ScrollView(.vertical) {
                 LazyVStack(spacing: 0) {
                     ForEach(casts, id: \.id) { cast in
@@ -51,7 +50,7 @@ struct ContentView: View {
                 Color(red: 0.11, green: 0.11, blue: 0.118)
             )
             .sheet(isPresented: $isProfileViewPresented) {
-                ProfileView()
+                ProfileView(toggleProfileView: toggleProfileView)
             }
         }
         .background(Color(red: 0.071, green: 0.071, blue: 0.071))

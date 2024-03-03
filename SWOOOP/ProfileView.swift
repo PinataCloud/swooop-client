@@ -10,11 +10,10 @@ import SwiftUI
 struct ProfileView: View {
     @State private var userProfile: User = User(fid: 0, username: "", pfp: "")
     @State private var deepLinkUrl: String = ""
+    var toggleProfileView: () -> Void
     func loadUser() {
-        let user = UserManager.shared.getUserData()
-        if(user?.username != nil) {
-            userProfile = user ?? User(fid: 0, username: "", pfp: "")
-        }
+        let user = UserManager.shared.getUserData() ?? User(fid: 0, username: "", pfp: "")
+        userProfile = user
     }
     
     func poll(token: String) {
@@ -27,8 +26,11 @@ struct ProfileView: View {
                 } else {
                     print("signer_private not found")
                 }
+                loadUser()
+                self.toggleProfileView()
             case .failure(let error):
                 // Handle error
+                print("Error in polling")
                 print(error)
             }
         }
@@ -40,20 +42,30 @@ struct ProfileView: View {
             case .success(let signerPayload):
                 // Use signerPayload
                 print(signerPayload)
-                        poll(token: signerPayload.pollingToken)
-                        deepLinkUrl = signerPayload.deepLinkUrl
-                        openURL()
-                    case .failure(let error):
-                        // Handle error
-                        print(error)
-                    }
-                }
+                poll(token: signerPayload.pollingToken)
+                deepLinkUrl = signerPayload.deepLinkUrl
+                openURL()
+            case .failure(let error):
+                // Handle error
+                print(error)
+            }
+        }
     }
     
     func openURL() {
         if let url = URL(string: deepLinkUrl) {
             UIApplication.shared.open(url)
         }
+    }
+    
+    func signOut() {
+        KeyValueStore.shared.removeValue(forKey: "fid")
+        KeyValueStore.shared.removeValue(forKey: "username")
+        KeyValueStore.shared.removeValue(forKey: "pfp")
+        KeyValueStore.shared.removeValue(forKey: "signer_approved")
+        KeyValueStore.shared.removeValue(forKey: "signer_private")
+        loadUser()
+        self.toggleProfileView()
     }
     
     var body: some View {
@@ -87,6 +99,13 @@ struct ProfileView: View {
                             .font(.title3)
                             .bold()
                             .foregroundColor(.black)
+                        Button(action: signOut) {
+                            Text("Sign out")
+                                .padding()
+                                .background(Color.blue)
+                                .foregroundColor(Color.white)
+                                .cornerRadius(10)
+                        }
                     } else {
                         Button(action: signIn) {
                             Text("Sign in with Warpcast")
@@ -103,8 +122,4 @@ struct ProfileView: View {
                     .background(.clear)
             )
     }
-}
-
-#Preview {
-    ProfileView()
 }

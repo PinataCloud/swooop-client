@@ -21,6 +21,10 @@ class KeyValueStore {
     func value(forKey key: String) -> Any? {
         return UserDefaults.standard.value(forKey: key)
     }
+    
+    func removeValue(forKey key: String) {
+        UserDefaults.standard.removeObject(forKey: key)
+    }
 }
 
 

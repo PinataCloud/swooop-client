@@ -22,7 +22,7 @@ struct SignerPayload: Codable {
 
 struct Completion: Codable {
     let state: String
-    let userFid: Int
+    let userFid: Int?
 }
 
 class UserManager {
@@ -115,18 +115,21 @@ class UserManager {
         URLSession.shared.dataTask(with: request) { data, response, error in
             // Check for error
             if let error = error {
+                print("Main polling error")
                 completion(.failure(error))
                 return
             }
             
             // Check for response status code
             guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+                print("Non 200 response")
                 completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid response"])))
                 return
             }
             
             // Check if data is available
             guard let data = data else {
+                print("No data received")
                 completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "No data received"])))
                 return
             }
@@ -134,10 +137,11 @@ class UserManager {
             do {
                 let complete = try JSONDecoder().decode(Completion.self, from: data)
                 let status: String = complete.state
+                print("Status")
                 print(status)
                 if (status == "completed") {
-                    KeyValueStore.shared.setValue(String(complete.userFid), forKey: "fid")
-                    self.fetchUser(fid: String(complete.userFid)) { result in
+                    KeyValueStore.shared.setValue(String(complete.userFid ?? 0), forKey: "fid")
+                    self.fetchUser(fid: String(complete.userFid ?? 0)) { result in
                         switch result {
                         case .success(let user):
                             print(user)
@@ -152,9 +156,12 @@ class UserManager {
                     KeyValueStore.shared.setValue("true", forKey: "signer_approved")
                     completion(.success(complete))
                 } else {
+                    print("We poll again")
                     self.pollForSuccess(token: token, completion: completion)
                 }
             } catch {
+                print("Catch failure in main polling")
+                print(error);
                 completion(.failure(error))
             }
         }.resume()

@@ -88,5 +88,6 @@ struct CastCardView: View {
         }
         .padding(.horizontal)
         .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color(red: 0.071, green: 0.071, blue: 0.071))
     }
 }

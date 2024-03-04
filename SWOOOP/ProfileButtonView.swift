@@ -25,13 +25,14 @@ struct ProfileButtonView: View {
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 60, height: 60)
+                    .frame(width: 30, height: 30)
+                    .padding()
                     .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
                 } else if phase.error != nil {
                     Image(systemName: "person.crop.circle.fill") // Use a default image if loading fails
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 42, height: 42)
+                        .frame(width: 30, height: 30)
                         .clipShape(Circle())
                         .padding()
                 } else {
@@ -42,12 +43,11 @@ struct ProfileButtonView: View {
             }
         }
         .frame(maxWidth: .infinity)
-        .background(
-            Color(red: 0.11, green: 0.11, blue: 0.118)
-        )
+        .background(Color(red: 0.071, green: 0.071, blue: 0.071))
         .onAppear {
             loadUser()
         }
+        .padding(0)
     }
     
 }

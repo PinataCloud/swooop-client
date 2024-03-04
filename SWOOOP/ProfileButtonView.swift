@@ -25,8 +25,9 @@ struct ProfileButtonView: View {
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 60, height: 60)
+                    .frame(width: 42, height: 42)
                     .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+                    .padding()
                 } else if phase.error != nil {
                     Image(systemName: "person.crop.circle.fill") // Use a default image if loading fails
                         .resizable()

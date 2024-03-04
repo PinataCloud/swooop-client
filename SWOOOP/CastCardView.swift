@@ -52,7 +52,7 @@ struct CastCardView: View {
                                 image
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
-                                    .frame(width: 300)
+                                    .frame(maxWidth: .infinity)
                                 } else if phase.error != nil {
                                     Text("Failed to load image")
                                 } else {
@@ -83,10 +83,11 @@ struct CastCardView: View {
                                 UIApplication.shared.open(url)
                             }
                         }
+                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                 }
             }
         }
-        .padding(.horizontal)
+        .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 }

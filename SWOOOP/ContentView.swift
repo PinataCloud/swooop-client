@@ -10,9 +10,14 @@ import SwiftUI
 struct ContentView: View {
     @State public var casts: [Cast] = []
     @State public var isProfileViewPresented = false // Track if the profile view is presented
+    @State public var isCastFormViewPresented = false // Track if the profile view is presented
     
     func toggleProfileView() {
         isProfileViewPresented.toggle()
+    }
+    
+    func toggleCastFormView(){
+        isCastFormViewPresented.toggle()
     }
     func loadCasts() {
         CastManager.shared.fetchCasts() { result in
@@ -52,6 +57,25 @@ struct ContentView: View {
             .sheet(isPresented: $isProfileViewPresented) {
                 ProfileView(toggleProfileView: toggleProfileView)
             }
+            .sheet(isPresented: $isCastFormViewPresented){
+                CastFormView()
+            }
+            .overlay(
+                GeometryReader { geometry in
+                    Button(action: {
+                        toggleCastFormView()
+                    }) {
+                        Image(systemName: "plus") // Replace with your button's content
+                            .font(.largeTitle)
+                            .frame(width: 60, height: 60)
+                            .foregroundColor(.white)
+                            .background(Color.blue)
+                            .clipShape(Circle())
+                            .padding(.horizontal)
+                    }
+                    .frame(width: geometry.size.width, height: geometry.size.height, alignment: .bottomTrailing)
+                }
+            )
         }
         .background(Color(red: 0.071, green: 0.071, blue: 0.071))
     }

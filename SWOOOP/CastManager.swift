@@ -44,8 +44,8 @@ class CastManager {
     
     var casts: [Cast] = []
     
-    func fetchCasts(completion: @escaping (Result<[Cast], Error>) -> Void) {
-        guard let url = URL(string: "https://swooop-server.onrender.com/feed?channel=https://warpcast.com/~/channel/pinata&pageToken=blank") else {
+    func fetchCasts(channel: String, completion: @escaping (Result<[Cast], Error>) -> Void) {
+        guard let url = URL(string: "https://swooop-server.onrender.com/feed?channel=\(channel)&pageToken=blank") else {
             completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
             return
         }
@@ -99,7 +99,6 @@ class CastManager {
             let jsonData = try jsonEncoder.encode(postBody)
             
             if let jsonString = String(data: jsonData, encoding: .utf8) {
-                print("JSON String:", jsonString)
                 
                 var request = URLRequest(url: url)
 

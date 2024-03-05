@@ -49,16 +49,25 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             ProfileButtonView(toggleProfileView: toggleProfileView)
+                .padding(.bottom, -20)
             ScrollView(.horizontal, showsIndicators: false) {
-                LazyHStack {
+                LazyHStack(spacing: 0) {
                     ForEach(channels, id: \.url) { channel in
                         VStack{
                             Text(channel.name).padding(.top, 40)
-                                .foregroundColor(.white)
+                                .foregroundStyle(
+                                    LinearGradient(
+                                        colors: [Color(red: 0.431, green: 0.988, blue: 1), Color(red: 0.867, green: 0.435, blue: 1)],
+                                        startPoint: .leading,
+                                        endPoint: .trailing
+                                    )
+                                )
+                                .font(.title)
+                                .bold()
                             ScrollView(.vertical) {
                                 LazyVStack(spacing: 0) {
                                     ForEach(casts, id: \.id) { cast in
-                                        ZStack {
+                                        ZStack{
                                             CastCardView(cast: cast)
                                                 .containerRelativeFrame([.horizontal, .vertical])
                                                 .padding(.horizontal, 20)
@@ -96,14 +105,14 @@ struct ContentView: View {
                 ProfileView(toggleProfileView: toggleProfileView)
             }
             .sheet(isPresented: $isCastFormViewPresented){
-                CastFormView()
+                CastFormView(toggleCastFormView: toggleCastFormView)
             }
             .overlay(
                 GeometryReader { geometry in
                     Button(action: {
                         toggleCastFormView()
                     }) {
-                        Image(systemName: "plus") // Replace with your button's content
+                        Image("button") // Replace with your button's content
                             .font(.largeTitle)
                             .frame(width: 60, height: 60)
                             .foregroundColor(.white)

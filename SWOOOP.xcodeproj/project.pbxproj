@@ -11,9 +11,9 @@
 		412369D22B926F7700A7A114 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412369D12B926F7700A7A114 /* StorageManager.swift */; };
 		412369D42B9276BF00A7A114 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412369D32B9276BF00A7A114 /* UserManager.swift */; };
 		415EF0862B9281D400208CED /* CastCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415EF0852B9281D400208CED /* CastCardView.swift */; };
-		A227BBD82B964C5100F4FA0C /* CastFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A227BBD72B964C5100F4FA0C /* CastFormView.swift */; };
 		4174912F2B96377000263ECE /* ChannelSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4174912E2B96377000263ECE /* ChannelSelectorView.swift */; };
 		417491312B963F1800263ECE /* Chillax_Complete in Resources */ = {isa = PBXBuildFile; fileRef = 417491302B963F1800263ECE /* Chillax_Complete */; };
+		A227BBD82B964C5100F4FA0C /* CastFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A227BBD72B964C5100F4FA0C /* CastFormView.swift */; };
 		A25810992B925C480021C2D4 /* SWOOOPApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25810982B925C480021C2D4 /* SWOOOPApp.swift */; };
 		A258109B2B925C480021C2D4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A258109A2B925C480021C2D4 /* ContentView.swift */; };
 		A258109D2B925C4A0021C2D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A258109C2B925C4A0021C2D4 /* Assets.xcassets */; };
@@ -29,10 +29,10 @@
 		412369D12B926F7700A7A114 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		412369D32B9276BF00A7A114 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		415EF0852B9281D400208CED /* CastCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastCardView.swift; sourceTree = "<group>"; };
-		A227BBD72B964C5100F4FA0C /* CastFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CastFormView.swift; path = ../CastFormView.swift; sourceTree = "<group>"; };
 		4174912E2B96377000263ECE /* ChannelSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSelectorView.swift; sourceTree = "<group>"; };
 		417491302B963F1800263ECE /* Chillax_Complete */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Chillax_Complete; sourceTree = "<group>"; };
 		417491342B964C5C00263ECE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A227BBD72B964C5100F4FA0C /* CastFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CastFormView.swift; path = ../CastFormView.swift; sourceTree = "<group>"; };
 		A25810952B925C480021C2D4 /* SWOOOP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SWOOOP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A25810982B925C480021C2D4 /* SWOOOPApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWOOOPApp.swift; sourceTree = "<group>"; };
 		A258109A2B925C480021C2D4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -335,7 +335,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.PinataTechnologies.SWOOP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -365,7 +365,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.PinataTechnologies.SWOOP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

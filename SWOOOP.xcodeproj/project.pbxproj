@@ -20,7 +20,6 @@
 		A25810A02B925C4A0021C2D4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A258109F2B925C4A0021C2D4 /* Preview Assets.xcassets */; };
 		A2BAF6BC2B93775C003D7DC8 /* ProfileButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BAF6BB2B93775C003D7DC8 /* ProfileButtonView.swift */; };
 		A2BAF6BE2B937B54003D7DC8 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BAF6BD2B937B54003D7DC8 /* ProfileView.swift */; };
-		A2BAF6C02B938F74003D7DC8 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BAF6BF2B938F74003D7DC8 /* SignInView.swift */; };
 		A2BAF6C32B939472003D7DC8 /* SlideButton in Frameworks */ = {isa = PBXBuildFile; productRef = A2BAF6C22B939472003D7DC8 /* SlideButton */; };
 /* End PBXBuildFile section */
 
@@ -40,7 +39,6 @@
 		A258109F2B925C4A0021C2D4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A2BAF6BB2B93775C003D7DC8 /* ProfileButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileButtonView.swift; sourceTree = "<group>"; };
 		A2BAF6BD2B937B54003D7DC8 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		A2BAF6BF2B938F74003D7DC8 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +86,6 @@
 				A2BAF6BB2B93775C003D7DC8 /* ProfileButtonView.swift */,
 				4174912E2B96377000263ECE /* ChannelSelectorView.swift */,
 				A2BAF6BD2B937B54003D7DC8 /* ProfileView.swift */,
-				A2BAF6BF2B938F74003D7DC8 /* SignInView.swift */,
 			);
 			path = SWOOOP;
 			sourceTree = "<group>";
@@ -178,7 +175,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A2BAF6C02B938F74003D7DC8 /* SignInView.swift in Sources */,
 				4174912F2B96377000263ECE /* ChannelSelectorView.swift in Sources */,
 				A2BAF6BE2B937B54003D7DC8 /* ProfileView.swift in Sources */,
 				A258109B2B925C480021C2D4 /* ContentView.swift in Sources */,

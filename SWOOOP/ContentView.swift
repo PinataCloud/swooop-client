@@ -58,7 +58,7 @@ struct ContentView: View {
                 ProfileView(toggleProfileView: toggleProfileView)
             }
             .sheet(isPresented: $isCastFormViewPresented){
-                CastFormView()
+                CastFormView(toggleCastFormView: toggleCastFormView)
             }
             .overlay(
                 GeometryReader { geometry in

@@ -71,7 +71,7 @@ class CastManager {
         }.resume()
     }
     
-    func postCast(text: String, parentUrl: String) {        
+    func postCast(text: String, parentUrl: String) { 
         var user_fid: String = ""
         var user_signer: String = ""
         if let fid = KeyValueStore.shared.value(forKey: "fid") as? String {

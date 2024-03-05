@@ -11,6 +11,7 @@ struct CastFormView: View {
 
     var toggleCastFormView: () -> Void
     @State public var message: String = ""
+    @State public var channel: Channel
 
     var body: some View {
         VStack{
@@ -27,7 +28,7 @@ struct CastFormView: View {
                 }
                 Spacer()
                 Button(action: {
-                    CastManager.shared.postCast(text: message, parentUrl: "")
+                    CastManager.shared.postCast(text: message, parentUrl: channel.url)
                     message = ""
                     self.toggleCastFormView()
                     print("Button tapped!")

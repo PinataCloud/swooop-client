@@ -11,7 +11,7 @@ struct ContentView: View {
     @State public var casts: [Cast] = []
     @State public var isProfileViewPresented = false 
     @State public var isCastFormViewPresented = false
-    @State public var selected: String = "Pinata"
+    @State public var selectedChannel: Channel = Channel(name: "Pinata", url: "https://warpcast.com/~/channel/pinata")
     let channels: [Channel] = [
             Channel(name: "Pinata", url: "https://warpcast.com/~/channel/pinata"),
             Channel(name: "Ted", url: "https://warpcast.com/~/channel/ted"),
@@ -30,11 +30,12 @@ struct ContentView: View {
         isCastFormViewPresented.toggle()
     }
 
-    func loadCasts(channel: String) {
+    func loadCasts(channel: Channel) {
         casts = []
         print("Loading: ")
         print(channel)
-        CastManager.shared.fetchCasts(channel: channel) { result in
+        selectedChannel = channel
+        CastManager.shared.fetchCasts(channel: channel.url) { result in
                     switch result {
                     case .success(let casts):
                         // Do something with the fetched posts
@@ -77,7 +78,7 @@ struct ContentView: View {
                                 }
                                 .scrollTargetLayout()
                             }
-                            .onAppear { loadCasts(channel: channel.url) }
+                            .onAppear { loadCasts(channel: channel) }
                             .scrollTargetBehavior(.paging)
                             .ignoresSafeArea()
                             .background(
@@ -105,7 +106,7 @@ struct ContentView: View {
                 ProfileView(toggleProfileView: toggleProfileView)
             }
             .sheet(isPresented: $isCastFormViewPresented){
-                CastFormView(toggleCastFormView: toggleCastFormView)
+                CastFormView(toggleCastFormView: toggleCastFormView, channel: selectedChannel)
             }
             .overlay(
                 GeometryReader { geometry in

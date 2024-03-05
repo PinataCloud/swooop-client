@@ -86,6 +86,7 @@ struct CastCardView: View {
                         .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                 }
             }
+            Spacer()
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)

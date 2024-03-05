@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct ProfileButtonView: View {
-    @State private var userProfile: User = User(fid: 0, username: "", pfp: "https://dweb.mypinata.cloud/ipfs/QmebfRyBCYe3UraZjLESoRzqA154oqYDp1Er1V8EETvy2r")
+    @State private var userProfile: User = User(fid: 0, username: "", pfp: "")
     var toggleProfileView: () -> Void
     func loadUser() {
-        let user = UserManager.shared.getUserData() ?? User(fid: 0, username: "", pfp: "https://dweb.mypinata.cloud/ipfs/QmebfRyBCYe3UraZjLESoRzqA154oqYDp1Er1V8EETvy2r")
+        let user = UserManager.shared.getUserData() ?? User(fid: 0, username: "", pfp: "")
         userProfile = user
         print("User Profile: ")
         print(userProfile)

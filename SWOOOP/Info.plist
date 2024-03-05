@@ -4,7 +4,6 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Chillax_Complete/Fonts/WEB/fonts/Chillax-Bold.woff2</string>
 		<string>Chillax_Complete/Fonts/OTF/Chillax-Bold.otf</string>
 	</array>
 </dict>

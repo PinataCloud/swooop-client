@@ -24,6 +24,7 @@ struct CastFormView: View {
                         .padding(.vertical, 10)
                         .foregroundColor(.white)
                         .background(Color.gray)
+                        .bold()
                         .cornerRadius(10)
                 }
                 Spacer()
@@ -37,12 +38,13 @@ struct CastFormView: View {
                         .padding(.horizontal, 20)
                         .padding(.vertical, 10)
                         .foregroundColor(Color(red: 0.314, green: 0.169, blue: 0.365))
+                        .bold()
                         .background(
-                                    LinearGradient(
-                                        colors: [Color(red: 0.431, green: 0.988, blue: 1), Color(red: 0.867, green: 0.435, blue: 1)],
-                                        startPoint: .leading,
-                                        endPoint: .trailing
-                                    )
+                            LinearGradient(
+                                colors: [Color(red: 0.431, green: 0.988, blue: 1), Color(red: 0.867, green: 0.435, blue: 1)],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
                         )
                         .cornerRadius(10)
                 }

@@ -110,8 +110,15 @@ struct ProfileView: View {
                         Button(action: signIn) {
                             Text("Sign in with Warpcast")
                                 .padding()
-                                .background(Color.blue)
-                                .foregroundColor(Color.white)
+                                .bold()
+                                .background(
+                                    LinearGradient(
+                                        colors: [Color(red: 0.431, green: 0.988, blue: 1), Color(red: 0.867, green: 0.435, blue: 1)],
+                                        startPoint: .leading,
+                                        endPoint: .trailing
+                                    )
+                                )
+                                .foregroundColor(Color(red: 0.314, green: 0.169, blue: 0.365))
                                 .cornerRadius(10)
                         }
                     }

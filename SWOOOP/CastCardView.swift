@@ -46,13 +46,13 @@ struct CastCardView: View {
                     if embedUrl.url.lowercased().hasSuffix(".jpg") || embedUrl.url.lowercased().hasSuffix(".png") || embedUrl.url.lowercased().hasSuffix(".jpeg") || embedUrl.url.lowercased().hasSuffix(".gif") {
                         // Render Image
                         HStack {
-                            Spacer()
                             AsyncImage(url:URL(string: embedUrl.url)) { phase in
                                 if let image = phase.image {
                                 image
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(maxWidth: .infinity)
+                                    .cornerRadius(5.0)
                                 } else if phase.error != nil {
                                     Text("Failed to load image")
                                 } else {
@@ -77,7 +77,7 @@ struct CastCardView: View {
                 ForEach(cast.embedCast, id: \.castId.hash) { castId in
                     let urlString = "https://supercast.xyz/c/\(castId.castId.hash)"
                     Text(urlString)
-                        .padding()
+                        .padding(.vertical)
                         .onTapGesture {
                             if let url = URL(string: urlString) {
                                 UIApplication.shared.open(url)
@@ -86,6 +86,7 @@ struct CastCardView: View {
                         .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                 }
             }
+            Spacer()
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)

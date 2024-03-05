@@ -63,7 +63,7 @@ struct ContentView: View {
                                         endPoint: .trailing
                                     )
                                 )
-                                .font(.title)
+                                .font(Font.custom("Chillax-Bold", size: 26, relativeTo: .title))
                                 .bold()
                             ScrollView(.vertical) {
                                 LazyVStack(spacing: 0) {

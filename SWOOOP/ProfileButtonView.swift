@@ -26,7 +26,6 @@ struct ProfileButtonView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 30, height: 30)
-                    .padding()
                     .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
                     .padding()
                 } else if phase.error != nil {

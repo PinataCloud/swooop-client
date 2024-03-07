@@ -29,7 +29,9 @@ struct Cast: Codable {
     let embedCast: [EmbedCast]
     let username: String
     let pfp: String
-    let timestamp: Int
+    let timestamp: String
+    let likes: Int
+    let recasts: Int
 }
 
 struct PostBody: Codable {

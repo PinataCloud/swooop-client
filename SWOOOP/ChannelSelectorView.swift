@@ -15,12 +15,12 @@ struct Channel {
 struct ChannelSelectorView: View {
     @State public var selected: String = "Pinata"
     let channels: [Channel] = [
-            Channel(name: "Pinata", url: "https://warpcast.com/~/channel/pinata"),
-            Channel(name: "Ted", url: "https://warpcast.com/~/channel/ted"),
-            Channel(name: "Diet Coke", url: "https://warpcast.com/~/channel/diet-coke"),
-            Channel(name: "Memes", url: "chain://eip155:1/erc721:0xfd8427165df67df6d7fd689ae67c8ebf56d9ca61"),
-            Channel(name: "Base", url: "https://onchainsummer.xyz"),
-            Channel(name: "Founders", url: "https://farcaster.group/founders"),
+            Channel(name: "Pinata", url: "pinata"),
+            Channel(name: "Ted", url: "ted"),
+            Channel(name: "Diet Coke", url: "diet-coke"),
+            Channel(name: "Memes", url: "memes"),
+            Channel(name: "Base", url: "base"),
+            Channel(name: "Founders", url: "founders"),
             // Add more channels as needed
         ]
     var body: some View {
